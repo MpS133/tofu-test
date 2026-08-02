@@ -1,0 +1,1 @@
+OpenTofu is working on Ubuntu!

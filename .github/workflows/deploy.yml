@@ -1,0 +1,24 @@
+name: OpenTofu Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install OpenTofu
+        uses: opentofu/setup-opentofu@v1
+
+      - name: Tofu Init
+        run: tofu init
+
+      - name: Tofu Plan
+        run: tofu plan -out=tfplan
+
+      - name: Tofu Apply
+        run: tofu apply tfplan
